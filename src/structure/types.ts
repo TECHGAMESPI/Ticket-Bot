@@ -22,6 +22,7 @@ export type ConfigType = {
 	roleToPingWhenOpenedId: string[];
 	logs: boolean;
 	logsChannelId: string;
+	transcriptUrl: string;
 	closeOption: {
 		closeButton: boolean;
 		dmUser: boolean;
