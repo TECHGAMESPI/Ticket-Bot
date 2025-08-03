@@ -53,12 +53,14 @@ export async function close(
 	reason?: string,
 	deleteTicket: boolean = false
 ) {
-
-	if(!interaction.channel || interaction.channel.type !== ChannelType.GuildText)
+	if (!interaction.channel || interaction.channel.type !== ChannelType.GuildText)
 		return await interaction.reply({
 			content: "This command can only be used in a ticket channel.",
 			ephemeral: true
 		});
+
+	if (client.config.transcriptUrl)
+		domain = client.config.transcriptUrl.endsWith("/") ? client.config.transcriptUrl : `${client.config.transcriptUrl}/`;
 
 	if (!client.config.closeOption.createTranscript) domain = client.locales.getSubValue("other", "unavailable");
 
@@ -115,10 +117,9 @@ export async function close(
 		})
 		.catch((e: unknown) => console.log(e));
 	invited.forEach(async (user) => {
-		(interaction.channel as TextChannel | null)?.permissionOverwrites
-			.edit(user, {
-				ViewChannel: false
-			});
+		(interaction.channel as TextChannel | null)?.permissionOverwrites.edit(user, {
+			ViewChannel: false
+		});
 	});
 
 	interaction
@@ -149,10 +150,9 @@ export async function close(
 				components: [rowAction]
 			})
 			.catch((e) => console.log(e));
-		
+
 		// Workaround for type handling, rewrite should not follow this.
-		if(interaction.channel && interaction.channel.type !== ChannelType.GuildText) 
-			throw Error("Close util used in a non-text channel");
+		if (interaction.channel && interaction.channel.type !== ChannelType.GuildText) throw Error("Close util used in a non-text channel");
 
 		interaction.channel
 			?.send({

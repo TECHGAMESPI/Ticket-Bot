@@ -78,7 +78,9 @@
 
 	"logs": true,
 	"logsChannelId": "1111111111111111111", // The id of the channel where the logs will be sent
-	
+
+	"transcriptUrl": "http://localhost:3000/", // Base URL of the transcript server
+
 	"closeOption": {
 		"closeButton": true, // If false the ticket can be closed only by doing /closes
 		"dmUser": true, // Whether to DM the user when the ticket is closed

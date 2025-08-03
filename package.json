@@ -3,12 +3,13 @@
   "version": "3.3.1",
   "description": "Bot with a ticket system using Discord.js v14",
   "main": "dist/index.js",
-  "scripts": {
-    "setup": "npm install && prisma db push",
-    "build": "rimraf dist && tsc",
-    "start": "node dist/index.js",
-    "format:fix": "prettier --write .",
-    "format:check": "prettier --check .",
+    "scripts": {
+        "setup": "npm install && prisma db push",
+        "build": "rimraf dist && tsc",
+        "start": "node dist/index.js",
+        "start:transcripts": "node dist/transcriptServer.js",
+        "format:fix": "prettier --write .",
+        "format:check": "prettier --check .",
     "lint:fix": "eslint --fix . --ext .ts",
     "lint:check": "eslint . --ext .ts"
   },
